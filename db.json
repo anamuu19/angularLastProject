@@ -1,0 +1,47 @@
+{
+  "user": [
+    {
+      "name": "anisa",
+      "username": "anamuu",
+      "email": "anisa@gmail.com",
+      "password": "anisa@19",
+      "role": "admin",
+      "isactive": true,
+      "id": 1
+    },
+    {
+      "name": "admin user",
+      "username": "admiin",
+      "email": "admin@gmail.com",
+      "password": "admin@19",
+      "role": "",
+      "isactive": false,
+      "id": 2
+    },
+    {
+      "name": "ahmed",
+      "username": "muraty",
+      "email": "muraty@gmail.com",
+      "password": "muraty@19",
+      "role": "",
+      "isactive": false,
+      "id": 3
+    },
+    {
+      "name": "ali",
+      "username": "kishky",
+      "email": "ali@gmail.com",
+      "password": "ali@19",
+      "role": "",
+      "isactive": false,
+      "id": 4
+    }
+  ],
+  "role":[
+    {
+      "name": "ali",
+      "username": "kishky"
+    }
+
+  ]
+}

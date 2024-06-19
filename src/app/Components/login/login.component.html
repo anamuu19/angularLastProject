@@ -1,0 +1,52 @@
+<div class="center-container w-100 vh-100 bg-dark pt-5">
+  <mat-card>
+    <img src="assets/smz.webp" width="150" class="mx-auto d-block">
+
+
+    <mat-card-content>
+      <form class="example-form" (submit)="onSubmit()">
+
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput name="email" [(ngModel)]="email">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input matInput name="password" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label> Role</mat-label>
+          <mat-select name="role" [(ngModel)]="role">
+            <mat-option *ngFor="let r of roles" [value]="r">{{r}}</mat-option>
+
+            <!-- <mat-option value="option3">User</mat-option> -->
+          </mat-select>
+        </mat-form-field>
+
+        <!-- <div class="form-floating mb-3">
+          <select class="form-select" id="floatingSelect" aria-label="Role" formControlName="role">
+
+            <option value="1">Admin</option>
+            <option value="2">User</option>
+          </select>
+          <label for="floatingSelect"> Choose Role</label>
+
+        </div> -->
+
+
+        <div>
+          <button type="submit" class="btn btn-primary w-100 mb-4  mt-4">Login</button>
+          <span>Dont you have Account? <a routerLink="/register">Create Account</a></span>
+        </div>
+
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</div>

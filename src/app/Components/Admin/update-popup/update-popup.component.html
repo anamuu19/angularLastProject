@@ -1,0 +1,62 @@
+<form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+  <h1 mat-dialog-title>Update User</h1>
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Middle Name</mat-label>
+          <input matInput formControlName="middleName">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Telephone</mat-label>
+          <input matInput formControlName="telNo">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Current Institution</mat-label>
+          <input matInput formControlName="instInfo">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" readonly> <!-- Make email read-only -->
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Position</mat-label>
+          <mat-select formControlName="position">
+            <mat-option *ngFor="let p of positions" [value]="p">{{p}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Role</mat-label>
+          <input matInput formControlName="role">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <mat-radio-group aria-label="Select an option" formControlName="gender">
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+    <button mat-raised-button color="accent" [mat-dialog-close]="closeMessage">Cancel</button>
+  </div>
+</form>

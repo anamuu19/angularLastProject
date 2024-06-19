@@ -1,0 +1,77 @@
+<!-- <div class="center-container">
+  <mat-card>
+    <button  mat-icon-button mat-dialog-close style="position: absolute; top: 5px; right: 5px;" color="warn">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <mat-card-header>
+      <h1>Add Institution</h1>
+    </mat-card-header>
+    <mat-dialog-content>
+      <form class="example-form" [formGroup]="addForm" >
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field class="example-full-width">
+              <mat-label>Name</mat-label>
+              <input matInput name="firstName" formControlName="name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="address">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field class="example-full-width">
+              <mat-label>Phone Number</mat-label>
+              <input matInput  formControlName="phoneNumber">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email">
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-dialog-actions [align]="'end'">
+          <button type="submit" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+          <button type="submit" mat-raised-button color="accent" matDialogClose>Cancel</button>
+        </mat-dialog-actions>
+      </form>
+    </mat-dialog-content>
+
+  </mat-card>
+</div> -->
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <h1 mat-dialog-title>{{inputData.title}}</h1>
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phoneNumber">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+      </div>
+    </div>
+
+  </div>
+  <div mat-dialog-actions>
+    <button  mat-raised-button color="primary">Save</button>
+    <!-- <button (click)="closePopup()" mat-raised-button color="warn">Close</button> -->
+    <button mat-raised-button color="accent" [mat-dialog-close]="closeMessage">Cancel</button>
+
+  </div>
+</form>

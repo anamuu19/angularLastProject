@@ -1,0 +1,49 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>List of Managers</h2>
+    </div>
+    <div class="col-sm-6">
+      <button mat-stroked-button (click)="addManager()" color="primary" style="float: right;">
+        <mat-icon>add</mat-icon>Add New Manager
+      </button>
+    </div>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>SN</th>
+        <th>Firstname</th>
+        <th>Middlename</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Gender</th>
+        <th>Institution</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of managerList; let x = index">
+        <td>{{ x + 1 }}</td>
+        <td>{{ data.FirstName }}</td>
+        <td>{{ data.MiddleName }}</td>
+        <td>{{ data.LastName }}</td>
+        <td>{{ data.Email }}</td>
+        <td>{{ data.PhoneNumber }}</td>
+        <td>{{ data.Address }}</td>
+        <td>{{ data.gender }}</td>
+        <td>{{ data.institution?.name }}</td> <!-- Assuming 'name' is a field in Institution -->
+        <td>
+          <button mat-raised-button color="primary" (click)="updateManager(data.id)">
+            <mat-icon>edit</mat-icon>Edit
+          </button>
+          <button mat-raised-button color="warn" (click)="deleteManager(data.id)">
+            <mat-icon>delete</mat-icon>Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

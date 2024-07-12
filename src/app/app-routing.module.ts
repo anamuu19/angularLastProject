@@ -15,6 +15,12 @@ import { ManangerListComponent } from './Components/Admin/mananger-list/mananger
 import { StaffDashboardComponent } from './Components/Staff/staff-dashboard/staff-dashboard.component';
 import { TransferComponent } from './Components/Admin/transfer/transfer.component';
 import { SettingComponent } from './Components/Admin/setting/setting.component';
+import { ManagerDashboardComponent } from './Components/Manager/manager-dashboard/manager-dashboard.component';
+import { ManagerNavbarComponent } from './Components/Manager/manager-navbar/manager-navbar.component';
+import { RegisterStaffComponent } from './Components/Manager/register-staff/register-staff.component';
+import { StaffNavbarComponent } from './Components/Staff/staff-navbar/staff-navbar.component';
+import { TransferFormComponent } from './Components/Staff/transfer-form/transfer-form.component';
+import { TransferListComponent } from './Components/Manager/transfer-list/transfer-list.component';
 // import { StaffRequestComponent } from './Components/Staff/staff-request/staff-request.component';
 
 
@@ -31,22 +37,22 @@ const routes: Routes = [
     {path:'transfer',component:TransferComponent},
     {path:'setting',component:SettingComponent}
   ]},
-  {path:'user-dashboard', component:StaffDashboardComponent}
-
-  //Manager
-  // {path:'manager-navbar', component:ManangerNavbarComponent, children:[
-  //   {path:'', component:ManangerDashboardComponent},
-  //   {path:'request', component:RequestComponent},
-  //   {path:'staff-list', component:StaffListComponent}
-
-  // ]},
 
   //Staff
-  // {path:'staff-navbar', component:StaffNavbarComponent, children:[
-  //   {path:'', component:StaffDashboardComponent},
-  //   {path:'staff-request', component:StaffRequestComponent}
+  {path:'user-dashboard',component:StaffNavbarComponent, children:[
+    {path:'', component:StaffDashboardComponent},
+    {path:'transfer',component:TransferFormComponent}
+  ]
+},
 
-  // ]},
+
+  //manager
+  {path:'navbar', component:ManagerNavbarComponent, children:[
+    {path:'', component:ManagerDashboardComponent},
+    {path:'register-staff', component:RegisterStaffComponent},
+    {path:'transfer', component:TransferListComponent}
+  ]}
+
 
 
 

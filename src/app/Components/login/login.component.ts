@@ -29,7 +29,8 @@ export class LoginComponent {
     private toastr: ToastrService) {
       this.roles = [
         'Admin',
-        'Staff'
+        'Staff',
+        'Manager'
       ]
     }
 
@@ -67,6 +68,11 @@ export class LoginComponent {
           this.toastr.success('Login successfully','Success Message')
           this.router.navigateByUrl("/layout")
         }
+        if(this.role == 'Manager'){
+          this.toastr.success('Login successfully','Success Message')
+          this.router.navigateByUrl("/navbar")
+        }
+
       }
     }, err => {
       this.toastr.error("Login failed");

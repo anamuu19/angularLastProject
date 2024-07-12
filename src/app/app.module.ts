@@ -51,6 +51,15 @@ import {MatRadioModule} from '@angular/material/radio';
 // import { UpdataManagerComponent } from './Services/Admin/updata-manager/updata-manager.component';
 import { UpdateManagerComponent } from './Components/Admin/update-manager/update-manager.component';
 import { UserListComponent } from './Components/Admin/user-list/user-list.component';
+import { ManagerDashboardComponent } from './Components/Manager/manager-dashboard/manager-dashboard.component';
+import { ManagerNavbarComponent } from './Components/Manager/manager-navbar/manager-navbar.component';
+import { RegisterStaffComponent } from './Components/Manager/register-staff/register-staff.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StaffNavbarComponent } from './Components/Staff/staff-navbar/staff-navbar.component';
+import { TransferFormComponent } from './Components/Staff/transfer-form/transfer-form.component';
+import { TransferListComponent } from './Components/Manager/transfer-list/transfer-list.component';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 // import {MatSelectModule} from '@angular/material/select';
 // import { StaffListComponent } from './Components/Manager/staff-list/staff-list.component';
 // import { RequestComponent } from './Components/Manager/request/request.component';
@@ -60,7 +69,6 @@ import { UserListComponent } from './Components/Admin/user-list/user-list.compon
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    DashboardComponent,
     UserListComponent,
     UpdatePopupComponent,
     MainLayoutComponent,
@@ -74,6 +82,12 @@ import { UserListComponent } from './Components/Admin/user-list/user-list.compon
     ConfirmDialogComponent,
     // UpdataManagerComponent,
     UpdateManagerComponent,
+    ManagerDashboardComponent,
+    ManagerNavbarComponent,
+    RegisterStaffComponent,
+    StaffNavbarComponent,
+    TransferFormComponent,
+    TransferListComponent,
     // StaffListComponent,
     // RequestComponent,
     // StaffRequestComponent,
@@ -93,10 +107,12 @@ import { UserListComponent } from './Components/Admin/user-list/user-list.compon
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    DashboardComponent,
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MatToolbarModule,

@@ -1,1 +1,56 @@
-<p>transfer works!</p>
+<div class="container mt-5">
+  <div class="row mb-3">
+    <div class="col-sm-6">
+      <h2><b>Transfer List</b></h2>
+    </div>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText" />
+    </div>
+  </div>
+  <mat-card>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Telephone</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Current Institution</th>
+            <th>Desired Institution</th>
+            <th>Date of Submitting</th>
+            <th>Reasons for Transfer</th>
+            <!-- <th>Role</th> -->
+            <th style="width: 180px;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of filteredUserList(); let x = index">
+            <td>{{ x + 1 }}</td>
+            <td>{{ data.firstName }}</td>
+            <td>{{ data.middleName }}</td>
+            <td>{{ data.lastName }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ data.phoneNumber }}</td>
+            <td>{{ data.address }}</td>
+            <td>{{ data.gender }}</td>
+            <td>{{ data.current_institution }}</td>
+            <td>{{ data.institution }}</td>
+            <td>{{ data.date }}</td>
+            <td>{{ data.reason_for_transfer }}</td>
+            <td>
+              <div class="action-buttons">
+                <button mat-stroked-button color="primary" style="margin-right: 5px;" (click)="confirm()">Confirm</button>
+                <button mat-stroked-button color="warn" (click)="delete(data.id)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-card>
+</div>

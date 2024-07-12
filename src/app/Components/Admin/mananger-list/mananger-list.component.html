@@ -1,49 +1,52 @@
 <div class="container mt-3">
-  <div class="row">
-    <div class="col-sm-6">
-      <h2>List of Managers</h2>
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2><b>List of Managers</b></h2>
+        </div>
+        <div class="col-sm-6 d-flex justify-content-end align-items-center">
+          <input type="text" class="form-control w-50 me-2" [(ngModel)]="searchTerm" (ngModelChange)="applyFilter()" placeholder="Search Managers">
+          <button mat-stroked-button (click)="addManager()" color="primary">
+            <mat-icon>add</mat-icon>Add New Manager
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-6">
-      <button mat-stroked-button (click)="addManager()" color="primary" style="float: right;">
-        <mat-icon>add</mat-icon>Add New Manager
-      </button>
+    <div class="card-body">
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Firstname</th>
+            <th>Middlename</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Institution</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of filteredManagerList; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ m.firstName }}</td>
+            <td>{{ m.middleName }}</td>
+            <td>{{ m.lastName }}</td>
+            <td>{{ m.email }}</td>
+            <td>{{ m.phoneNumber }}</td>
+            <td>{{ m.address }}</td>
+            <td>{{ m.gender }}</td>
+            <td>{{ m.institution?.name }}</td>
+            <td>
+              <mat-icon color="primary" (click)="updateManager(m.id)">edit</mat-icon>
+              <mat-icon color="warn" (click)="deleteManager(m.id)">delete</mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>SN</th>
-        <th>Firstname</th>
-        <th>Middlename</th>
-        <th>Lastname</th>
-        <th>Email</th>
-        <th>Phone Number</th>
-        <th>Address</th>
-        <th>Gender</th>
-        <th>Institution</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of managerList; let x = index">
-        <td>{{ x + 1 }}</td>
-        <td>{{ data.FirstName }}</td>
-        <td>{{ data.MiddleName }}</td>
-        <td>{{ data.LastName }}</td>
-        <td>{{ data.Email }}</td>
-        <td>{{ data.PhoneNumber }}</td>
-        <td>{{ data.Address }}</td>
-        <td>{{ data.gender }}</td>
-        <td>{{ data.institution?.name }}</td> <!-- Assuming 'name' is a field in Institution -->
-        <td>
-          <button mat-raised-button color="primary" (click)="updateManager(data.id)">
-            <mat-icon>edit</mat-icon>Edit
-          </button>
-          <button mat-raised-button color="warn" (click)="deleteManager(data.id)">
-            <mat-icon>delete</mat-icon>Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>

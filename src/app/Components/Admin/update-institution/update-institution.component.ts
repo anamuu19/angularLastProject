@@ -28,7 +28,7 @@ export class UpdateInstitutionComponent implements OnInit {
       name: ['', Validators.required],
       address: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required]]
     });
   }
 
@@ -36,7 +36,7 @@ export class UpdateInstitutionComponent implements OnInit {
     if (this.inputData.id > 0) {
       this.setPopupData(this.inputData.id);
     }
-    // Subscribe to form value changes to update the form status
+
     this.myForm.valueChanges.subscribe(() => {
       this.isFormEmpty = this.myForm.invalid || this.myForm.pending;
     });

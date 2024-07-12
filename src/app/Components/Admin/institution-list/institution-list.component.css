@@ -11,3 +11,8 @@
 .card {
   width: 300px;
 } */
+
+.search-field {
+  width: 500px; /* Adjust the width as per your design */
+  padding: 500px;
+}

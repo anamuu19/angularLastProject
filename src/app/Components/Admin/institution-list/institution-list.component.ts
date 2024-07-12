@@ -12,9 +12,12 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 })
 export class InstitutionListComponent {
   institutionList!: any[];
+  institutionListFiltered!: any[]; // Define filtered list
+  searchTerm: string = ''; // Define searchTerm property
 
-  constructor(private instService:InstitutionListService,
-    private dialog: MatDialog, private toastr: ToastrService) {}
+  constructor(private instService: InstitutionListService,
+              private dialog: MatDialog,
+              private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.loadInstitutions();
@@ -24,6 +27,7 @@ export class InstitutionListComponent {
     this.instService.getAllInst().subscribe({
       next: (response: any) => {
         this.institutionList = response;
+        this.applyFilter(); // Apply filter once institutions are loaded
       }
     });
   }
@@ -71,5 +75,16 @@ export class InstitutionListComponent {
     dialogRef.afterClosed().subscribe(() => {
       this.loadInstitutions();
     });
+  }
+
+  applyFilter(): void {
+    // Implement filtering logic based on searchTerm
+    if (!this.searchTerm) {
+      this.institutionListFiltered = this.institutionList; // If no searchTerm, show all institutions
+    } else {
+      this.institutionListFiltered = this.institutionList.filter(inst =>
+        inst.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
   }
 }

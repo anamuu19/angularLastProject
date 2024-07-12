@@ -1,1 +1,11 @@
+<!-- app.component.html -->
+
 <router-outlet></router-outlet>
+
+<!-- Conditional Footer -->
+<ng-container *ngIf="showFooter">
+  <footer class=" text-white text-center p-3 mt-5">
+    <p>&copy; 2024 Online Staff Transfer Application. All Rights Reserved.</p>
+  </footer>
+</ng-container>
+

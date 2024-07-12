@@ -1,0 +1,8 @@
+/* styles.css or app.component.css */
+
+/* Make the navbar sticky */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure it stays on top of other content */
+}

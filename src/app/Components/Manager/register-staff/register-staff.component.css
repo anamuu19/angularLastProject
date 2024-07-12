@@ -1,0 +1,19 @@
+/* Remove background and border from button icons */
+.btn .fas {
+  background: none;
+  border: none;
+}
+
+/* White table with borders */
+.table-white {
+  background-color: white;
+  border: 1px solid #dee2e6;
+}
+
+.table-white th, .table-white td {
+  border: 1px solid #dee2e6;
+}
+
+.table-white th {
+  background-color: #f8f9fa;
+}

@@ -1,0 +1,15 @@
+/* styles.css or app.component.css */
+
+/* Make the footer sticky */
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #4d5754; /* Dark background color */
+  color: white; /* Text color */
+  text-align: center;
+  padding: 5px 0; /* Reduced padding for spacing */
+  height: 30px; /* Reduced height */
+  z-index: 1000; /* Ensure it stays on top */
+}

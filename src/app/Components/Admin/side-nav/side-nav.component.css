@@ -1,0 +1,72 @@
+/* Sidebar container */
+.sidebar {
+  width: 250px;
+  height: 100vh; /* Full height */
+  position: fixed; /* Fixed position */
+  top: 0;
+  left: 0;
+  background-color: #121413;
+  color: #fff;
+  overflow-y: auto; /* Scrollbar if content overflows */
+  display: flex;
+  flex-direction: column; /* Ensure header and nav stack vertically */
+  padding-top: 0; /* Ensure the header starts at the very top */
+}
+
+/* Sidebar header */
+.sidebar-header {
+  padding: 0rem;
+  background-color: #0a4217;
+  color: #ffffff;
+  text-align: left;
+  position: relative; /* Default position to be part of the flow */
+  top: 0; /* Start the header at the top */
+  width: 100%; /* Ensure the header spans the full width of the sidebar */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+/* Sidebar navigation */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; /* Take up the remaining space */
+  margin-top: 0; /* Align navigation directly below the header */
+}
+
+/* Navigation items */
+.nav-item {
+  margin: 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.nav-link i {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.nav-link:hover {
+  background-color: #495057;
+}
+
+/* Main content */
+.main-content {
+  margin-left: 250px; /* Align content after sidebar */
+  padding: 20px;
+}
+
+/* Optional: Style the content inside main-content */
+.main-content > * {
+  /* Ensure content doesn't overflow */
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}

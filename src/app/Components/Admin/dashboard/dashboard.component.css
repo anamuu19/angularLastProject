@@ -1,24 +1,79 @@
-/* .card-body {
-  display: flex;
-  align-items: center;
+/* Existing header styles */
+.header {
+  width: 100%;
+  /* height: 100%; */
+  /* padding: 100px; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1030; /* Ensure it's above other content */
+  box-shadow: 0 4px 8px rgba(2, 34, 27, 0.1);
 }
 
-.bg-primary {
-  border-radius: 40px;
+/* Green Background for Navbar */
+.navbar-green {
+  background-color: #1c4d27; /* Green color */
+  color: #ffffff;
 }
 
-.card p {
-  margin: 0;
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #ffffff;
 }
 
-.card h3 {
-  margin: 0;
+.navbar-nav .nav-link {
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #ffffff;
 }
 
-button {
-  margin-top: 8px;
+.navbar-nav .nav-link:hover {
+  color: #d4edda;
 }
 
-.card .ms-4 {
-  margin-left: 16px;
+/* .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 } */
+
+.container {
+  padding-top: 500px;
+}
+
+.icon-green-bg {
+  background-color: rgb(14, 71, 14);
+}
+
+.admin-header {
+  background-color: #1c4d27; /* Dark green background */
+  padding: 20px 0; /* Space around the header text */
+  text-align: left; /* Align text to the left */
+  margin: 50px 0 10px; /* Space between this header and the content below */
+  width: 100%;
+  box-sizing: border-box; /* Include padding in width calculation */
+  position: relative;
+  overflow: hidden;
+  min-height: 60px; /* Ensure there's enough height for the text */
+}
+
+.admin-header h1 {
+  margin: 0; /* Remove default margin */
+  font-size: 1.25rem; /* Adjust font size to match existing header */
+  color: #f8f3f3; /* Text color */
+  padding: 0 20px; /* Padding to ensure text doesn’t touch the sides */
+  white-space: nowrap; /* Prevent text from wrapping */
+  position: absolute; /* Positioning for animation */
+  animation: scroll-text 10s linear infinite; /* Apply the animation */
+  line-height: 1.5; /* Adjust line-height if needed */
+}
+
+
+/* Keyframes for scrolling effect */
+@keyframes scroll-text {
+  0% {
+    transform: translateX(100%); /* Start from right off the screen */
+  }
+  100% {
+    transform: translateX(-100%); /* Move to left off the screen */
+  }
+}

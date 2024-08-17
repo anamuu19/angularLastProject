@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../Services/auth.service';
 import { Router } from '@angular/router';
 import { User } from '../../model/user';
@@ -57,8 +57,19 @@ export class RegisterComponent {
       telNo: new FormControl('', Validators.required),
       position: new FormControl('', Validators.required),
       gender: new FormControl('', Validators.required)
-    });
+    },
+    { validators: this.checkPasswords }
+    );
+
   }
+  checkPasswords(control: AbstractControl): { notSame: boolean } | null {
+    const group = control as FormGroup;
+    const password = group.get('password')?.value;
+    const confirm = group.get('confirm')?.value;
+
+    return password === confirm ? null : { notSame: true };
+  }
+
 
   proceedRegistration(): void {
 

@@ -1,0 +1,17 @@
+.action-buttons {
+  display: flex;
+  gap: 5px; /* Optional: Adds space between buttons */
+}
+
+.text-warning {
+  color: yellow;
+}
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  font-weight: bold;
+  color: red;
+}

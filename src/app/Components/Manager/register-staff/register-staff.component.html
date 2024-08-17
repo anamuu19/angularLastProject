@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="card-body">
-      <table class="table table-bordered table-white">
+      <table class="table table-striped table-hover">
         <thead>
           <tr>
             <th>Id</th>
@@ -41,13 +41,13 @@
             <td>
               <div class="btn-group" role="group">
                 <mat-icon style="color: green;" (click)="open(update); editStaff(x)">edit</mat-icon>
-                  <!-- <i class="fas fa-edit"></i><mat-icon>edit</mat-icon> -->
+                <!-- <i class="fas fa-edit"></i><mat-icon>edit</mat-icon> -->
 
-                <mat-icon color="warn" style="margin-right: 2px;"  (click)="deleteStaff(x.id)">delete</mat-icon>
-                  <!-- <i class="fas fa-trash"></i><mat-icon>delete</mat-icon> -->
+                <mat-icon color="warn" style="margin-right: 2px;" (click)="deleteStaff(x.id)">delete</mat-icon>
+                <!-- <i class="fas fa-trash"></i><mat-icon>delete</mat-icon> -->
 
-                  <mat-icon color="primary" (click)="open(request); requestStaff(x)">how_to_reg</mat-icon>
-                  <!-- <i class="fas fa-paper-plane"></i><mat-icon>request</mat-icon> -->
+                <mat-icon color="primary" (click)="open(request); requestStaff(x)">how_to_reg</mat-icon>
+                <!-- <i class="fas fa-paper-plane"></i><mat-icon>request</mat-icon> -->
 
               </div>
             </td>
@@ -73,7 +73,7 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="staffForm" (ngSubmit)="addStaff()">
+    <form [formGroup]="staffForm">
       <div class="row">
         <div class="col-md-6">
           <div class="mb-3">
@@ -95,7 +95,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="mb-3">
-            <label for="lname">LastName</label>
+            <label for="lname">Last name</label>
             <input type="text" class="form-control" id="lname" placeholder="Enter LastName" formControlName="lastName">
           </div>
         </div>
@@ -143,7 +143,8 @@
 
       <div class="mb-3">
         <label for="institution">Institution</label>
-        <select class="form-control" id="institution" placeholder="choose institution" formControlName="institution" *ngIf="instlist.length > 0">
+        <select class="form-control" id="institution" placeholder="choose institution" formControlName="institution"
+          *ngIf="instlist.length > 0">
           <option selected disabled>-- Choose Institution --</option>
           <option *ngFor="let a of instlist" [value]="a.name">
             {{ a.name }} : {{ a.address }} : {{ a.email }}
@@ -152,7 +153,7 @@
         <div *ngIf="instlist.length === 0">Loading institutions...</div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary" (click)="addStaff()" [disabled]="staffForm.invalid">Save</button>
     </form>
   </div>
 </ng-template>
@@ -241,7 +242,7 @@
         </select>
         <div *ngIf="instlist.length === 0">Loading institutions...</div>
       </div>
-      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="submit" class="btn btn-primary" [disabled]="staffForm.invalid">Update</button>
     </form>
   </div>
 </ng-template>
@@ -252,19 +253,21 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="staffForm" (ngSubmit)="makeRequest()">
+    <form [formGroup]="requestForm" (ngSubmit)="makeRequest()">
       <!-- Existing Fields -->
       <div class="row">
         <div class="col-md-6">
           <div class="mb-3">
             <label for="fname">First name</label>
-            <input type="text" class="form-control" id="fname" placeholder="Enter Firstname" formControlName="firstName">
+            <input type="text" class="form-control" id="fname" placeholder="Enter Firstname"
+              formControlName="firstName">
           </div>
         </div>
         <div class="col-md-6">
           <div class="mb-3">
             <label for="mname">Middle name</label>
-            <input type="text" class="form-control" id="mname" placeholder="Enter Middlename" formControlName="middleName">
+            <input type="text" class="form-control" id="mname" placeholder="Enter Middlename"
+              formControlName="middleName">
           </div>
         </div>
       </div>
@@ -286,7 +289,8 @@
         <div class="col-md-6">
           <div class="mb-3">
             <label for="phone">Phone</label>
-            <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" formControlName="phoneNumber">
+            <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number"
+              formControlName="phoneNumber">
           </div>
         </div>
         <div class="col-md-6">
@@ -301,44 +305,57 @@
           <label>Gender:</label>
           <div class="d-flex">
             <div class="form-check me-3">
-              <input class="form-check-input" type="radio" name="gender" id="genderMale" value="male" formControlName="gender">
+              <input class="form-check-input" type="radio" name="gender" id="genderMale" value="male"
+                formControlName="gender">
               <label class="form-check-label" for="genderMale">Male</label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="female" formControlName="gender">
+              <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="female"
+                formControlName="gender">
               <label class="form-check-label" for="genderFemale">Female</label>
             </div>
           </div>
         </div>
       </div>
 
-
-      <!-- New Fields -->
       <div class="mb-3">
         <label for="dateOfRequest">Date of Submitting Request</label>
         <input type="date" class="form-control" id="dateOfRequest" formControlName="date">
       </div>
       <div class="mb-3">
         <label for="currentInstitution">Current Institution</label>
-        <input type="text" class="form-control" id="currentInstitution" placeholder="Enter Current Institution" formControlName="current_institution">
+        <input type="text" class="form-control" id="currentInstitution" placeholder="Enter Current Institution"
+          formControlName="current_institution">
       </div>
       <div class="mb-3">
         <label for="desiredInstitution">Desired Institution</label>
         <select class="form-control" id="desiredInstitution" formControlName="institution">
           <option value="" disabled>-- Choose Institution --</option>
           <option *ngFor="let a of instlist" [value]="a.name">
-            {{a.name}} : {{a.address}} : {{a.email}}
+            {{a.name}}
           </option>
         </select>
       </div>
 
-
-      <div class="mb-3">
-        <label for="reasonForRequest">Reasons for transfer</label>
-        <textarea class="form-control" id="reasonForRequest" rows="3" placeholder="Enter Reasons" formControlName="reason_for_transfer"></textarea>
+      <div class="row">
+        <!-- Add controls for reason_for_transfer and comment -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="reason_for_transfer">Reason for Transfer</label>
+            <textarea type="text" class="form-control" id="reason_for_transfer" placeholder="Enter Reason"
+              formControlName="reason_for_transfer"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="comment">Comment</label>
+            <textarea type="text" class="form-control" id="comment" placeholder="Enter Comment"
+              formControlName="comment"></textarea>
+          </div>
+        </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Request</button>
+      <button type="submit" class="btn btn-primary" [disabled]="requestForm.invalid">Request</button>
     </form>
   </div>
 </ng-template>

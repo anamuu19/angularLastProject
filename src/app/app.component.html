@@ -1,11 +1,12 @@
-<!-- app.component.html -->
-
+<!-- Router outlet for routed views -->
 <router-outlet></router-outlet>
 
 <!-- Conditional Footer -->
 <ng-container *ngIf="showFooter">
-  <footer class=" text-white text-center p-3 mt-5">
-    <p>&copy; 2024 Online Staff Transfer Application. All Rights Reserved.</p>
+  <footer class="text-white text-center p-3 mt-3">
+    <p>&copy; 2024 Staff Transfer Management System. All Rights Reserved.</p>
   </footer>
 </ng-container>
 
+<!-- Conditional Rendering of Download Letter Component -->
+<!-- <app-download-letter *ngIf="transferRequestData" [data]="transferRequestData"></app-download-letter> -->

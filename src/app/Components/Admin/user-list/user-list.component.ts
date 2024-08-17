@@ -15,6 +15,7 @@ import { UserService } from '../../../Services/Admin/user.service';
 })
 export class UserListComponent implements OnInit {
   userList: any[] = [];
+  filteredUserList: any[] = [];
 
   constructor(
     private service: AuthService,
@@ -32,6 +33,8 @@ export class UserListComponent implements OnInit {
     this.service.getAll().subscribe({
       next: (response: any) => {
         this.userList = response;
+        // Filter the user list after the data is loaded
+        this.filteredUserList = this.userList.filter(user => user.role !== 'Admin');
       },
       error: (error: any) => {
         console.error(error);
@@ -39,6 +42,7 @@ export class UserListComponent implements OnInit {
       }
     });
   }
+
 
   update(email: string): void {
     this.dialog.open(UpdatePopupComponent, {

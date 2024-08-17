@@ -3,13 +3,13 @@
     <div class="col-sm-6">
       <h2><b>Transfer List</b></h2>
     </div>
-    <div class="col-sm-6">
+    <!-- <div class="col-sm-6">
       <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText" />
-    </div>
+    </div> -->
   </div>
   <mat-card>
     <div class="table-responsive">
-      <table class="table table-bordered">
+      <table class="table table-striped table-hover">
         <thead>
           <tr>
             <th>SN</th>
@@ -24,12 +24,13 @@
             <th>Desired Institution</th>
             <th>Date of Submitting</th>
             <th>Reasons for Transfer</th>
-            <!-- <th>Role</th> -->
+            <th>Comments</th>
+            <th>Status</th>
             <th style="width: 180px;">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of filteredUserList(); let x = index">
+          <tr *ngFor="let data of userList; let x = index">
             <td>{{ x + 1 }}</td>
             <td>{{ data.firstName }}</td>
             <td>{{ data.middleName }}</td>
@@ -42,10 +43,13 @@
             <td>{{ data.institution }}</td>
             <td>{{ data.date }}</td>
             <td>{{ data.reason_for_transfer }}</td>
+            <td>{{ data.comment }}</td>
+            <td>{{ data.status }}</td>
             <td>
               <div class="action-buttons">
-                <button mat-stroked-button color="primary" style="margin-right: 5px;" (click)="confirm()">Confirm</button>
-                <button mat-stroked-button color="warn" (click)="delete(data.id)">Delete</button>
+
+                <mat-icon  color="primary" (click)="confirmRequest(data)">check</mat-icon>
+                <mat-icon  color="warn" (click)="delete(data.id)">delete</mat-icon>
               </div>
             </td>
           </tr>

@@ -31,6 +31,10 @@ export class RegisterStaffService {
     return this.http.put(this.baseUrl+'/'+id,data)
   }
 
+  countStaff(){
+    return this.http.get(this.baseUrl+'/count')
+  }
+
 
 
 }

@@ -6,6 +6,7 @@ import { InstitutionListService } from '../../../Services/Admin/institution-list
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogComponent } from '../../Admin/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TransferService } from '../../../Services/Manager/transfer.service';
 
 @Component({
   selector: 'app-register-staff',
@@ -16,6 +17,7 @@ export class RegisterStaffComponent implements OnInit {
   list!: any[];
   filteredList!: any[];
   staffForm!: FormGroup;
+  requestForm!:FormGroup;
   instlist: any[] = [];
   private modalRef!: NgbModalRef;
   private currentStaffId!: number; // Add this line to keep track of the staff being edited
@@ -23,6 +25,7 @@ export class RegisterStaffComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private staffService: RegisterStaffService,
+    private transferService: TransferService,
     private toastr: ToastrService,
     private dialog:MatDialog,
     private instService: InstitutionListService,
@@ -35,6 +38,7 @@ export class RegisterStaffComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
+    this.initializeRequest();
     this.viewStaff();
     this.viewInstitution();
   }
@@ -49,6 +53,10 @@ export class RegisterStaffComponent implements OnInit {
       address: ['', Validators.required],
       gender: ['', Validators.required],
       institution: ['', Validators.required]
+      // date: ['', Validators.required],
+      // current_institution: ['', Validators.required],
+      // reason_for_transfer: ['', Validators.required],
+      // comment: ['', Validators.required]
     });
   }
 
@@ -72,8 +80,10 @@ export class RegisterStaffComponent implements OnInit {
   }
 
   addStaff() {
+    // console.log('Add Staff button clicked');
     if (this.staffForm.valid) {
       this.staffService.addStaff(this.staffForm.value).subscribe(response => {
+        console.log(response)
         this.toastr.success('Staff added successfully', 'Success');
         this.viewStaff();
         this.staffForm.reset();
@@ -106,6 +116,8 @@ export class RegisterStaffComponent implements OnInit {
   }
 
   editStaff(staff: any) {
+    console.log('Editing staff:', staff); // Check the staff object
+    console.log('Institution:', staff.institution);
     this.currentStaffId = staff.id;
     this.staffForm.patchValue({
       firstName: staff.firstName,
@@ -116,13 +128,14 @@ export class RegisterStaffComponent implements OnInit {
       address: staff.address,
       gender: staff.gender,
       institution: staff.institution
+      // comment: staff.institution
     });
     // this.open(update); // Open the update modal
   }
 
   requestStaff(staff:any){
     this.currentStaffId = staff.id;
-    this.staffForm.patchValue({
+    this.requestForm.patchValue({
       firstName: staff.firstName,
       middleName: staff.middleName,
       lastName: staff.lastName,
@@ -130,12 +143,17 @@ export class RegisterStaffComponent implements OnInit {
       phoneNumber: staff.phoneNumber,
       address: staff.address,
       gender: staff.gender,
+      date: staff.date,
+      // current_institution: staff.current_institution,
+      institution: staff.institution,
+      // reason_for_transfer: staff.reason_for_transfer,
+      // comment: staff.comment
       // institution: staff.institution
     });
   }
 
-  initializeRequest(){
-    this.staffForm = this.fb.group({
+  initializeRequest() {
+    this.requestForm = this.fb.group({
       firstName: ['', Validators.required],
       middleName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -143,16 +161,26 @@ export class RegisterStaffComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
       gender: ['', Validators.required],
+      date: ['', Validators.required],
       current_institution: ['', Validators.required],
       institution: ['', Validators.required],
-      date: ['', Validators.required],
       reason_for_transfer: ['', Validators.required],
+      comment: ['', Validators.required]
     });
-
   }
 
+
   makeRequest() {
-    // Implement request logic here
+    this.transferService.addRequest(this.requestForm.value).subscribe({
+      next:()=>{
+        this.toastr.success('request submitted','successfully')
+        this.modalRef.close();
+
+        this.requestForm.reset();
+
+      }
+    })
+
   }
 
   updateStaff() {

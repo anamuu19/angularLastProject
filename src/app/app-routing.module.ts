@@ -21,6 +21,8 @@ import { RegisterStaffComponent } from './Components/Manager/register-staff/regi
 import { StaffNavbarComponent } from './Components/Staff/staff-navbar/staff-navbar.component';
 import { TransferFormComponent } from './Components/Staff/transfer-form/transfer-form.component';
 import { TransferListComponent } from './Components/Manager/transfer-list/transfer-list.component';
+import { SideNavComponent } from './Components/Admin/side-nav/side-nav.component';
+import { DownloadLetterComponent } from './Components/Staff/download-letter/download-letter.component';
 // import { StaffRequestComponent } from './Components/Staff/staff-request/staff-request.component';
 
 
@@ -29,7 +31,7 @@ const routes: Routes = [
   {path:'register', component:RegisterComponent},
 
   //Admin
-  {path:'layout', component:MainLayoutComponent, children:[
+  {path:'layout', component:SideNavComponent, children:[
     {path:'', component:DashboardComponent},
     {path:'user', component:UserListComponent},
     {path:'institution-list',component:InstitutionListComponent},
@@ -41,7 +43,8 @@ const routes: Routes = [
   //Staff
   {path:'user-dashboard',component:StaffNavbarComponent, children:[
     {path:'', component:StaffDashboardComponent},
-    {path:'transfer',component:TransferFormComponent}
+    {path:'transfer',component:TransferFormComponent},
+    {path:'letter',component:DownloadLetterComponent}
   ]
 },
 

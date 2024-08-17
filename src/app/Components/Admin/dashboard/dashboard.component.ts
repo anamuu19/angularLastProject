@@ -3,6 +3,8 @@ import { AuthService } from '../../../Services/auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { TransferService } from '../../../Services/Manager/transfer.service';
+import { ManagerListService } from '../../../Services/Admin/manager-list.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,13 +17,17 @@ export class DashboardComponent implements OnInit {
   register: any;
   inst: any;
   hr: any;
+  // user: any;
+  request: any;
 
-  constructor(private service: AuthService) {}
+  constructor(private service: AuthService, private transfer:TransferService,
+    private managerList: ManagerListService) {}
 
   ngOnInit(): void {
     this.user();
     this.institution();
     this.manager();
+    this.req();
   }
 
   user() {
@@ -38,36 +44,27 @@ export class DashboardComponent implements OnInit {
   }
 
   manager() {
-    // Implement fetching manager data here
+    this.managerList.countManager().subscribe({
+      next:(response:any)=>{
+        this.hr = response
+      }
+
+    })
   }
 
-  // title = 'angular17ssrapp';
-	// chartOptions = {
-	// 	title: {
-	// 		text: "Angular Column Chart with Index Labels"
-	// 	},
-	// 	animationEnabled: true,
-	// 	axisY: {
-	// 		includeZero: true
-	// 	},
-	// 	data: [{
-	// 		type: "column", //change type to bar, line, area, pie, etc
-	// 		//indexLabel: "{y}", //Shows y value on all Data Points
-	// 		indexLabelFontColor: "#5A5757",
-	// 		dataPoints: [
-	// 			{ x: 10, y: 71 },
-	// 			{ x: 20, y: 55 },
-	// 			{ x: 30, y: 50 },
-	// 			{ x: 40, y: 65 },
-	// 			{ x: 50, y: 71 },
-	// 			{ x: 60, y: 92, indexLabel: "Highest\u2191" },
-	// 			{ x: 70, y: 68 },
-	// 			{ x: 80, y: 38, indexLabel: "Lowest\u2193"  },
-	// 			{ x: 90, y: 54 },
-	// 			{ x: 100, y: 60 }
-	// 		]
-	// 	}]
-	// }
+  req(){
+    this.transfer.countRequest().subscribe({
+      next:(response:any)=>{
+        this.request = response;
+      }
+    })
+  }
+
+
+
+  logout(){}
+
+
 
 
 

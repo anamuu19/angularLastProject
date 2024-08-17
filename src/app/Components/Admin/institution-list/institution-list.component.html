@@ -13,7 +13,7 @@
 
   <div class="card mt-3">
     <div class="card-body">
-      <table class="table table-bordered">
+      <table class="table table-striped table-hover">
         <thead>
           <tr>
             <th>SN</th>
@@ -33,12 +33,12 @@
             <td>{{ data.email }}</td>
             <td>
               <div class="btn-group" role="group">
-                <button mat-raised-button color="primary" style="margin-right: 2px;" (click)="updateInst(data.id)">
-                  <mat-icon>edit</mat-icon>Edit
-                </button>
-                <button mat-raised-button color="warn" (click)="deleteInst(data.id)">
-                  <mat-icon>delete</mat-icon>Delete
-                </button>
+                <mat-icon color="primary" style="margin-right: 2px;" (click)="updateInst(data.id)">
+                  edit
+                </mat-icon>
+                <mat-icon color="warn" (click)="deleteInst(data.id)">
+                  delete
+                </mat-icon>
               </div>
             </td>
           </tr>

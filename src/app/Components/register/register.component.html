@@ -64,6 +64,9 @@
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
+          <div *ngIf="registerForm.errors?.['notSame'] && registerForm.touched">
+            <p style="color: red;">Passwords do not match</p>
+          </div>
         </div>
         <div class="col-sm-6">
           <mat-radio-group aria-label="Select an option" formControlName="gender">

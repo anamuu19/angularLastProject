@@ -1,0 +1,29 @@
+<!-- <div class="container mt-5">
+  <h2>Transfer Status</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Transfer ID</th>
+        <th>Current Institution</th>
+        <th>Desired Institution</th>
+        <th>Date of Request</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of transferRequests">
+        <td>{{ request.id }}</td>
+        <td>{{ request.current_institution }}</td>
+        <td>{{ request.institution }}</td>
+        <td>{{ request.date }}</td>
+        <td>{{ request.status }}</td>
+        <td>
+          <button *ngIf="request.status === 'approved'" (click)="downloadLetter(request)">Download Letter</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+<button mat-raised-button color="primary" style="margin-top: 100px; margin-left: 100px;">Download letter</button>

@@ -42,4 +42,8 @@ export class ManagerListService {
     // Customize the error handling as per your needs
     return throwError('Something went wrong; please try again later.');
   }
+
+  countManager(){
+    return this.http.get(this.baseUrl+'/count')
+  }
 }

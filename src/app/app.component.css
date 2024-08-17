@@ -6,10 +6,10 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #4d5754; /* Dark background color */
+  background-color: #06290e; /* Dark background color */
   color: white; /* Text color */
   text-align: center;
-  padding: 5px 0; /* Reduced padding for spacing */
-  height: 30px; /* Reduced height */
-  z-index: 1000; /* Ensure it stays on top */
+  padding: 5px 0;
+  height: 10px;
+  z-index: 1000; 
 }

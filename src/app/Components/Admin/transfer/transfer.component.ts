@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TransferService } from '../../../Services/Manager/transfer.service';
+import { ToastrService } from 'ngx-toastr';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-transfer',
@@ -10,7 +13,11 @@ export class TransferComponent implements OnInit {
   userList: any[] = [];
   searchText: string = '';
 
-  constructor(private service: TransferService) {}
+  constructor(
+    private service: TransferService,
+    private toastr: ToastrService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.viewRequest();
@@ -20,6 +27,7 @@ export class TransferComponent implements OnInit {
     this.service.getAllRequest().subscribe({
       next: (resp: any) => {
         this.userList = resp;
+        console.log(resp);
       },
       error: (err) => {
         console.error('Error fetching transfer requests', err);
@@ -27,27 +35,43 @@ export class TransferComponent implements OnInit {
     });
   }
 
-  filteredUserList(): any[] {
-    return this.userList.filter(data =>
-      data.firstName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.middleName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.lastName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.phoneNumber.includes(this.searchText) ||
-      data.address.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.gender.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.current_institution.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.institution.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.date.includes(this.searchText) ||
-      data.reason_for_transfer.toLowerCase().includes(this.searchText.toLowerCase())
-    );
+  confirmRequest(data: any): void {
+    if (data.status === 'accepted') {
+      this.toastr.info('Request already accepted');
+      return;
+    }
+
+    data.status = 'accepted'; // Status set to 'approved' at the admin level
+    this.service.confirmRequest(data.id, data).subscribe({
+      next: () => {
+        this.toastr.success('Request accepted successfully');
+        this.viewRequest(); // Refresh the list
+      },
+      error: (err) => {
+        console.error('Error approving transfer request', err);
+      }
+    });
   }
 
-  confirm(): void {
-    // Implement update logic here
-  }
 
   delete(id: number): void {
-    // Implement delete logic here
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { message: 'Are you sure you want to delete this request?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.service.deleteRequest(id).subscribe({
+          next: (response: any) => {
+            this.viewRequest(); // Reload institutions after deletion
+            this.toastr.success('Request deleted successfully');
+          },
+          error: (error: any) => {
+            console.error(error);
+            this.toastr.error('Failed to delete request. Please try again.');
+          }
+        });
+      }
+    });
   }
 }

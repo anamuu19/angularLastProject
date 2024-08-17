@@ -1,0 +1,20 @@
+/* transfer-list.component.css */
+.action-buttons {
+  display: flex;
+  gap: 5px; /* Adjust the gap between buttons as needed */
+  align-items: center;
+}
+
+.text-warning {
+  color: #ffc107; /* Yellow */
+}
+
+
+.text-success {
+  color: #28a745; /* Green */
+}
+
+/* .text-danger {
+  color: #dc3545;
+} */
+

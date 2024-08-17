@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class TransferService {
   private baseUrl='http://localhost:8080/url/request';
+  private url='http://localhost:8080/url';
+  private letterUrl = 'http://localhost:8080/api/letter';
   constructor(private http:HttpClient) { }
 
   getAllRequest(){
@@ -25,4 +27,21 @@ export class TransferService {
   updateRequest(id:number,data:any){
     return this.http.put(this.baseUrl+'/'+id,data)
   }
+
+  confirmRequest(id: number, data: any) {
+    return this.http.put(`${this.url}/confirm/${id}`, data);
+  }
+  countRequest(){
+    return this.http.get(this.baseUrl+'/count')
+  }
+  // downloadConfirmationLetter(id:number){
+  //   return this.http.get(this.baseUrl+"/"+id)
+  // }
+  // downloadLetter(requestId: number, institutionId: number) {
+  //   const url = `${this.letterUrl}/individual-letter/${requestId}/${institutionId}`;
+  //   return this.http.get(url, {
+  //     responseType: 'blob',
+  //     headers: new HttpHeaders().append('accepted', 'application/pdf')
+  //   });
+  // }
 }

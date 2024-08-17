@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="table-responsive">
-    <table class="table table-bordered">
+    <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th>SN</th>
@@ -22,24 +22,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of userList; let x = index">
-          <td>{{ x + 1 }}</td>
-          <td>{{ data.firstName }}</td>
-          <td>{{ data.middleName }}</td>
-          <td>{{ data.lastName }}</td>
-          <td>{{ data.instInfo }}</td>
-          <td>{{ data.telNo }}</td>
-          <td>{{ data.position }}</td>
-          <td>{{ data.email }}</td>
-          <td>{{ data.gender }}</td>
-          <td>{{ data.role }}</td>
-          <td>
-            <div class="action-buttons">
-              <mat-icon color="primary" style="margin-right: 2px;" (click)="update(data.email)">edit</mat-icon>
-              <mat-icon color="warn" (click)="delete(data.email)">delete</mat-icon>
-            </div>
-          </td>
-        </tr>
+        <ng-container *ngFor="let data of filteredUserList; let x = index">
+          <tr>
+            <td>{{ x + 1 }}</td>
+            <td>{{ data.firstName }}</td>
+            <td>{{ data.middleName }}</td>
+            <td>{{ data.lastName }}</td>
+            <td>{{ data.instInfo }}</td>
+            <td>{{ data.telNo }}</td>
+            <td>{{ data.position }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ data.gender }}</td>
+            <td>{{ data.role }}</td>
+            <td>
+              <div class="action-buttons">
+                <mat-icon color="primary" style="margin-right: 2px;" (click)="update(data.email)">edit</mat-icon>
+                <mat-icon color="warn" (click)="delete(data.email)">delete</mat-icon>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>

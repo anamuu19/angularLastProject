@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Comment</h2>
+<mat-dialog-content>
+  <form [formGroup]="confirmForm">
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Comment</mat-label>
+      <textarea matInput formControlName="comment"></textarea>
+      <mat-error *ngIf="comment?.hasError('required')">
+        Comment is required.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button color="accent" (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onConfirm()">Confirm</button>
+</mat-dialog-actions>

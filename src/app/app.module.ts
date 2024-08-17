@@ -58,6 +58,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StaffNavbarComponent } from './Components/Staff/staff-navbar/staff-navbar.component';
 import { TransferFormComponent } from './Components/Staff/transfer-form/transfer-form.component';
 import { TransferListComponent } from './Components/Manager/transfer-list/transfer-list.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CommentDialogComponent } from './Components/Manager/comment-dialog/comment-dialog.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SideNavComponent } from './Components/Admin/side-nav/side-nav.component';
+import { DownloadLetterComponent } from './Components/Staff/download-letter/download-letter.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // import {MatSelectModule} from '@angular/material/select';
@@ -88,6 +93,9 @@ import { TransferListComponent } from './Components/Manager/transfer-list/transf
     StaffNavbarComponent,
     TransferFormComponent,
     TransferListComponent,
+    CommentDialogComponent,
+    SideNavComponent,
+    DownloadLetterComponent,
     // StaffListComponent,
     // RequestComponent,
     // StaffRequestComponent,
@@ -102,11 +110,13 @@ import { TransferListComponent } from './Components/Manager/transfer-list/transf
     MatInputModule,
     MatButtonModule,
     MatMenuModule,
+    MatTooltipModule,
     MatCardModule,
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    FontAwesomeModule,
     DashboardComponent,
     MatDialogModule,
     FormsModule,

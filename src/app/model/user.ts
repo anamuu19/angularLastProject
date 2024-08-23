@@ -1,14 +1,14 @@
 export class User {
-  firstName: String = '';
-  middleName: String = '';
-  lastName: String = '';
-  instInfo: String = '';
-  telNo: String = '';
-  position: String = '';
-  email: String = '';
-  password: String = '';
-  confirm: String = '';
-  gender: String = '';
-  role: String = '';
-  token: String = '';
+  firstName: string = '';
+  middleName: string = '';
+  lastName: string = '';
+  instInfo: string = '';
+  telNo: string = '';
+  position: string = '';
+  email: string = '';
+  password: string = '';
+  confirm: string = '';
+  gender: string = '';
+  role: string = '';
+  token: string = '';
 }

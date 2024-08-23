@@ -3,6 +3,8 @@ import { TransferService } from '../../../Services/Manager/transfer.service';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { error } from 'console';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-transfer',
@@ -74,4 +76,40 @@ export class TransferComponent implements OnInit {
       }
     });
   }
+  // extractId():number[]{
+  //   return this.userList.map((inst:any)=>inst.id);
+  // }
+
+  downloadLetter(requestId: number, institutionId: number): void {
+    const url = `http://localhost:8080/api/letter/individual-letter/${requestId}/${institutionId}`;
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+
+    this.toastr.success('Letter download initiated successfully');
+  }
+
+  getStatusClass(status: string): string {
+    switch (status) {
+      case 'accepted':
+        return 'text-success';  // Green for accepted status
+      case 'rejected':
+        return 'text-danger';   // Red for rejected status
+        case 'in process':
+          return 'text-info;';   // Yellow for pending status
+        default:
+          return 'text-secondary' ; // Grey for other statuses
+    }
+  }
+
+
+
+
+
+
+
 }

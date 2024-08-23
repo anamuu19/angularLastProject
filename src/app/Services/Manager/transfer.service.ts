@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,13 @@ import { Injectable } from '@angular/core';
 export class TransferService {
   private baseUrl='http://localhost:8080/url/request';
   private url='http://localhost:8080/url';
-  private letterUrl = 'http://localhost:8080/api/letter';
+  // private letterUrl = 'http://localhost:8080/api/letter';
   constructor(private http:HttpClient) { }
 
-  getAllRequest(){
-    return this.http.get(this.baseUrl)
+  getAllRequest(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl);
   }
+
   getById(id:number){
     return this.http.get(this.baseUrl+'/'+id)
   }
@@ -34,6 +36,10 @@ export class TransferService {
   countRequest(){
     return this.http.get(this.baseUrl+'/count')
   }
+  acceptRequest(requestId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/requests/${requestId}/accept`, {});
+  }
+
   // downloadConfirmationLetter(id:number){
   //   return this.http.get(this.baseUrl+"/"+id)
   // }

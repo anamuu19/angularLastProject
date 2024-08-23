@@ -3,15 +3,27 @@
   gap: 5px; /* Optional: Adds space between buttons */
 }
 
-.text-warning {
-  color: yellow;
-}
-
 .text-success {
   color: green;
+  font-weight: bold;
 }
 
 .text-danger {
-  font-weight: bold;
   color: red;
+  font-weight: bold;
 }
+
+.text-warning {
+  color: orange;
+  font-weight: bold;
+}
+
+.text-info {
+  color: rgb(43, 106, 148);
+  font-weight: bold;
+}
+.text-secondary {
+  color: rgb(94, 96, 97);
+  font-weight: bold;
+}
+

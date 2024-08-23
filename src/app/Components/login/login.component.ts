@@ -13,13 +13,13 @@ import { User } from '../../model/user';
 export class LoginComponent {
   hide = true;
 
-  email: String='';
-  password: String='';
-  role: String='';
+  email: string='';
+  password: string='';
+  role: string='';
 
   user: User = new User();
 
-  roles : String[];
+  roles : string[];
 
 
   loginForm!: FormGroup;
@@ -52,67 +52,34 @@ export class LoginComponent {
     this.user.role = this.role;
 
     this.authService.login(this.user).subscribe(res => {
-      console.log(res)
-      if(res == null){
+      if (res == null) {
         this.toastr.error("Incorrect email or password ");
         this.ngOnInit();
-      } else{
+      } else {
         console.log("Login successfully");
-        localStorage.setItem("token",res.token);
-        if(this.role == 'Staff'){
-          this.toastr.success('Login successfully','Success Message')
+
+        // Store the token in sessionStorage
+        sessionStorage.setItem("token", res.token);
+
+        // Store the user's email in sessionStorage
+        sessionStorage.setItem("userEmail", this.user.email);
+
+        if (this.role === 'Staff') {
+          this.toastr.success('Login successfully', 'Success Message');
           this.router.navigateByUrl("/user-dashboard");
-
+        } else if (this.role === 'Admin') {
+          this.toastr.success('Login successfully', 'Success Message');
+          this.router.navigateByUrl("/layout");
+        } else if (this.role === 'Manager') {
+          this.toastr.success('Login successfully', 'Success Message');
+          this.router.navigateByUrl("/navbar");
         }
-        if(this.role == 'Admin'){
-          this.toastr.success('Login successfully','Success Message')
-          this.router.navigateByUrl("/layout")
-        }
-        if(this.role == 'Manager'){
-          this.toastr.success('Login successfully','Success Message')
-          this.router.navigateByUrl("/navbar")
-        }
-
       }
     }, err => {
       this.toastr.error("Login failed");
       this.ngOnInit();
-    }
-    )
-
-
-
-
-
-
-    // const username = this.loginForm.get('username')?.value;
-    // const password = this.loginForm.get('password')?.value;
-
-    // if (username === 'Admin' && password === 'admin@123') {
-    //   this.toastr.success('Login successfully')
-    //   this.router.navigateByUrl('/layout');
-
-    // }
-    // else if (username === 'Manager' && password === 'manager@123') {
-    //   this.toastr.success('Login successfully')
-    //   this.router.navigateByUrl('/manager-navbar');
-
-    // }
-
-    // this.authService.getUser(this.loginForm.value).subscribe({
-    //   next: (response: any) => {
-    //     if (response && response[0].username) {
-    //       localStorage.setItem('user', JSON.stringify(response[0]))
-    //       this.toastr.success('Login successfully')
-    //       this.router.navigateByUrl("staff-navbar")
-    //     }
-    //     else {
-    //       this.toastr.warning('user not found', 'Please register')
-    //       this.router.navigateByUrl("/");
-
-    //     }
-    //   }
-
-    // })
+    });
   }
+
+
 }

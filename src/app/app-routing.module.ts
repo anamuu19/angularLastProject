@@ -23,6 +23,7 @@ import { TransferFormComponent } from './Components/Staff/transfer-form/transfer
 import { TransferListComponent } from './Components/Manager/transfer-list/transfer-list.component';
 import { SideNavComponent } from './Components/Admin/side-nav/side-nav.component';
 import { DownloadLetterComponent } from './Components/Staff/download-letter/download-letter.component';
+import { ProfileComponent } from './Components/Staff/profile/profile.component';
 // import { StaffRequestComponent } from './Components/Staff/staff-request/staff-request.component';
 
 
@@ -44,7 +45,8 @@ const routes: Routes = [
   {path:'user-dashboard',component:StaffNavbarComponent, children:[
     {path:'', component:StaffDashboardComponent},
     {path:'transfer',component:TransferFormComponent},
-    {path:'letter',component:DownloadLetterComponent}
+    {path:'letter',component:DownloadLetterComponent},
+    {path:'profile',component:ProfileComponent}
   ]
 },
 

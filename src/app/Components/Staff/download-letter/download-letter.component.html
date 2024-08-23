@@ -1,29 +1,54 @@
-<!-- <div class="container mt-5">
-  <h2>Transfer Status</h2>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Transfer ID</th>
-        <th>Current Institution</th>
-        <th>Desired Institution</th>
-        <th>Date of Request</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let request of transferRequests">
-        <td>{{ request.id }}</td>
-        <td>{{ request.current_institution }}</td>
-        <td>{{ request.institution }}</td>
-        <td>{{ request.date }}</td>
-        <td>{{ request.status }}</td>
-        <td>
-          <button *ngIf="request.status === 'approved'" (click)="downloadLetter(request)">Download Letter</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
+<div class="container">
+  <h2>Your Transfer Requests</h2>
+  <table mat-table [dataSource]="requests" class="mat-elevation-z8">
 
-<button mat-raised-button color="primary" style="margin-top: 100px; margin-left: 100px;">Download letter</button>
+    <!-- SN Column -->
+    <ng-container matColumnDef="sn">
+      <th mat-header-cell *matHeaderCellDef> SN </th>
+      <td mat-cell *matCellDef="let request; let i = index"> {{ i + 1 }} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="namesColumn">
+      <th mat-header-cell *matHeaderCellDef> Names </th>
+      <td mat-cell *matCellDef="let request"> {{request.firstName}} {{request.middleName}} {{request.lastName}} </td>
+    </ng-container>
+
+    <!-- Desired Institution -->
+    <!-- <ng-container matColumnDef="desiredInstitution">
+      <th mat-header-cell *matHeaderCellDef> Desired Institution </th>
+      <td mat-cell *matCellDef="let request"> {{request.institution?.name}} </td>
+    </ng-container> -->
+
+    <!-- Manager Status -->
+    <!-- <ng-container matColumnDef="managerStatus">
+      <th mat-header-cell *matHeaderCellDef> Manager Status </th>
+      <td mat-cell *matCellDef="let request" [ngClass]="getStatusClass(request.status)">
+        {{request.status}}
+      </td>
+    </ng-container> -->
+
+    <!-- Admin Status -->
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef> Admin Status </th>
+      <td mat-cell *matCellDef="let request" [ngClass]="getStatusClass(request.status)">
+        {{request.status}}
+      </td>
+    </ng-container>
+
+    <!-- Download Letter Column -->
+    <ng-container matColumnDef="downloadLetter">
+      <th mat-header-cell *matHeaderCellDef> Download Letter </th>
+      <td mat-cell *matCellDef="let request">
+        <button mat-raised-button color="primary" (click)="downloadLetter(request.id, request.institution.id)"
+                *ngIf="request.status === 'accepted'">
+          <mat-icon>download</mat-icon> Download Letter
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Header and Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

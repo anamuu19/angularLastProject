@@ -40,18 +40,33 @@
             <td>{{ data.address }}</td>
             <td>{{ data.gender }}</td>
             <td>{{ data.current_institution }}</td>
-            <td>{{ data.institution }}</td>
+            <td>{{ data.institution?.name }}</td>
             <td>{{ data.date }}</td>
             <td>{{ data.reason_for_transfer }}</td>
             <td>{{ data.comment }}</td>
-            <td>{{ data.status }}</td>
+            <td [ngClass]="getStatusClass(data.status)">{{ data.status }}</td>
             <td>
               <div class="action-buttons">
-
-                <mat-icon  color="primary" (click)="confirmRequest(data)">check</mat-icon>
-                <mat-icon  color="warn" (click)="delete(data.id)">delete</mat-icon>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="confirmRequest(data)">
+                    <mat-icon color="primary">check</mat-icon>
+                    <span>Confirm</span>
+                  </button>
+                  <button mat-menu-item (click)="delete(data.id)">
+                    <mat-icon color="warn">delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                  <button mat-menu-item *ngIf="data.status === 'accepted'" (click)="downloadLetter(data.id, data.institution?.id)">
+                    <mat-icon color="accent">download</mat-icon>
+                    <span>Download</span>
+                  </button>
+                </mat-menu>
               </div>
             </td>
+
           </tr>
         </tbody>
       </table>

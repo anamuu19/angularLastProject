@@ -34,4 +34,8 @@ export class InstitutionListService {
     // Assuming your API endpoint for deleting an institution by ID is '/api/institutions/:id'
     return this.http.delete<any>(this.baseUrl+'/'+id);
   }
+  getInstitutionIdByName(name: string): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/name/${name}`);
+  }
+
 }

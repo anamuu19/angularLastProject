@@ -63,6 +63,7 @@ import { CommentDialogComponent } from './Components/Manager/comment-dialog/comm
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SideNavComponent } from './Components/Admin/side-nav/side-nav.component';
 import { DownloadLetterComponent } from './Components/Staff/download-letter/download-letter.component';
+import { ProfileComponent } from './Components/Staff/profile/profile.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // import {MatSelectModule} from '@angular/material/select';
@@ -96,6 +97,7 @@ import { DownloadLetterComponent } from './Components/Staff/download-letter/down
     CommentDialogComponent,
     SideNavComponent,
     DownloadLetterComponent,
+    ProfileComponent,
     // StaffListComponent,
     // RequestComponent,
     // StaffRequestComponent,

@@ -85,6 +85,7 @@ export class RegisterComponent {
 
     this.user.email = this.registerForm.value.email;
     this.user.password = this.registerForm.value.password;
+    this.user.confirm = this.registerForm.value.confirm;
     this.user.firstName = this.registerForm.value.firstName;
     this.user.middleName = this.registerForm.value.middleName;
     this.user.lastName = this.registerForm.value.lastName;

@@ -46,3 +46,69 @@ body {
     display: none; /* Hide the print button when printing */
   }
 }
+
+.modal-content{
+  width: 1000px;
+}
+
+#myPdf{
+  width: 85%;
+  height: 900px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* margin-bottom: 100px; */
+  margin-top: 50px;
+  /* min-height: 100vh; */
+}
+
+.text-center {
+  text-align: center;
+  margin-bottom: 3px;
+  margin-top: 20px;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* .mat-table-centered {
+  margin: 0 auto;
+  min-width: 300px;
+} */
+
+.mat-header-cell, .mat-cell {
+  text-align: center;
+}
+
+.text-danger {
+  color: red;
+  font-weight: bold;
+}
+
+.text-warning {
+  color: orange;
+  font-weight: bold;
+}
+
+.text-success {
+  color: green;
+  font-weight: bold;
+}
+
+
+
+.text-secondary {
+  color: rgb(43, 106, 148);;
+  font-weight: bold;
+}
+
+

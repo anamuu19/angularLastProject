@@ -1,0 +1,23 @@
+.profile-container {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.profile-left {
+  flex: 1;
+  max-width: 250px;
+  text-align: center;
+}
+
+.profile-right {
+  flex: 2;
+  margin-left: 20px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}

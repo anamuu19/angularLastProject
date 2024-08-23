@@ -1,0 +1,65 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <img [src]="userProfileImage" alt="Profile Picture" class="img-fluid rounded-circle" />
+      <button class="btn btn-primary btn-block mt-3" (click)="changeProfilePicture()">Change Picture</button>
+    </div>
+
+    <div class="col-md-8">
+      <form (ngSubmit)="updateProfile()">
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control form-control-sm"
+            [(ngModel)]="user.email"
+            name="email"
+            required
+          />
+        </div>
+
+        <h4 class="mt-4">Change Password</h4>
+        <div class="form-group mb-3">
+          <label for="oldPassword">Old Password</label>
+          <div class="input-group">
+            <input
+              [type]="showOldPassword ? 'text' : 'password'"
+              id="password"
+              class="form-control form-control-sm"
+              [(ngModel)]="user.password"
+              name="password"
+              required
+            />
+            <div class="input-group-append">
+              <button type="button" class="btn btn-outline-secondary btn-sm" (click)="toggleShowOldPassword()">
+                <mat-icon>{{ showOldPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="newPassword">New Password</label>
+          <div class="input-group">
+            <input
+              [type]="showNewPassword ? 'text' : 'password'"
+              id="newPassword"
+              class="form-control form-control-sm"
+              [(ngModel)]="user.newPassword"
+              name="newPassword"
+              required
+            />
+            <div class="input-group-append">
+              <button type="button" class="btn btn-outline-secondary btn-sm" (click)="toggleShowNewPassword()">
+                <mat-icon>{{ showNewPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block mt-4">Update Profile</button>
+      </form>
+    </div>
+  </div>
+</div>

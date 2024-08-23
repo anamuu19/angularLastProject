@@ -11,6 +11,7 @@ import { TransferService } from '../../../Services/Manager/transfer.service';
   styleUrls: ['./transfer-list.component.css']
 })
 export class TransferListComponent implements OnInit {
+
   userList: any[] = [];
   searchText: string = '';
 
@@ -49,10 +50,10 @@ export class TransferListComponent implements OnInit {
   }
 
   confirm(data: any): void {
-    // if (data.status === 'accepted' || data.status === 'approved') {
-    //   this.toastr.info('Request already processed');
-    //   return;
-    // }
+    if (data.status === 'accepted') {
+      this.toastr.info('Request already processed');
+      return;
+    }
 
     const dialogRef = this.dialog.open(CommentDialogComponent, {
       width: '300px',
@@ -61,14 +62,13 @@ export class TransferListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // data.status = 'accepted';
         data.comment = result.comment;
+        data.status = 'in process'; // Set status to 'in process' before sending to admin
 
         this.transferService.addRequest(data).subscribe({
           next: () => {
-            this.toastr.success('Request sending to admin');
+            this.toastr.success('Request sent to admin');
             this.viewRequest();
-            // this.sendToAdmin(data);
           },
           error: (err) => {
             console.error('Error confirming transfer request', err);
@@ -77,6 +77,20 @@ export class TransferListComponent implements OnInit {
       }
     });
   }
+
+  acceptRequest(requestId: number): void {
+    this.transferService.acceptRequest(requestId).subscribe({
+      next: () => {
+        this.toastr.success('Request accepted successfully');
+        this.viewRequest();
+      },
+      error: (err) => {
+        console.error('Error accepting request', err);
+      }
+    });
+  }
+
+
 
   // sendToAdmin(data: any): void {
   //   data.status = 'in process'; // Status set to 'in process' when sending to admin
@@ -125,6 +139,26 @@ export class TransferListComponent implements OnInit {
     //   }
     // });
   }
+
+  getStatusClass(status: string): string {
+    switch (status) {
+      case 'accepted':
+        return 'text-success';  // Green for accepted status
+      case 'rejected':
+        return 'text-danger';   // Red for rejected status
+      case 'pending':
+        return 'text-warning';
+        case 'in process':
+        return 'text-info;';   // Yellow for pending status
+      default:
+        return 'text-secondary' ; // Grey for other statuses
+    }
+  }
+
+
+
+
+
 
   filteredUserList(): any[] {
     return this.userList.filter(data =>

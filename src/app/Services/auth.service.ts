@@ -14,6 +14,7 @@ export class AuthService {
   userUrl = 'http://localhost:8080/auth/getAll';
   countUrl = 'http://localhost:8080/auth/count';
   countInstUrl = 'http://localhost:8080/url/institution/count';
+  // url = 'http://localhost:8080/auth/user/put';
 
   constructor(private http: HttpClient) {
 
@@ -45,6 +46,9 @@ export class AuthService {
   countInst(){
     return this.http.get(this.countInstUrl)
   }
+  // updateUser(id:String, data:any){
+  //   return this.http.put(this.url+'/'+id,data)
+  // }
 
   // addUser(data: any) {
   //   return this.http.post(this.baseUrl, data);

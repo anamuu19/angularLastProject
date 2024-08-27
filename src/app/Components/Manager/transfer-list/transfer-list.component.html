@@ -42,10 +42,11 @@
             <td>{{ data.institution?.name }}</td>
             <td>{{ data.date }}</td>
             <td>{{ data.reason_for_transfer }}</td>
-            <td [ngClass]="getStatusClass(data.status)">{{ data.status }}</td>            <td>
+            <td [ngClass]="getStatusClass(data.status)">{{ data.status }}</td>
+            <td>
               <div class="d-flex justify-content-around">
                 <mat-icon color="primary" (click)="confirm(data)">edit</mat-icon>
-                <mat-icon color="warn" (click)="reject(data)">clear</mat-icon>
+                <!-- <mat-icon color="warn" (click)="reject(data)">clear</mat-icon> -->
                 <mat-icon color="warn" (click)="delete(data.id)">delete</mat-icon>
               </div>
             </td>

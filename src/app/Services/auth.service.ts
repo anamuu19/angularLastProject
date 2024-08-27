@@ -14,7 +14,7 @@ export class AuthService {
   userUrl = 'http://localhost:8080/auth/getAll';
   countUrl = 'http://localhost:8080/auth/count';
   countInstUrl = 'http://localhost:8080/url/institution/count';
-  // url = 'http://localhost:8080/auth/user/put';
+  url = 'http://localhost:8080/auth/user/put';
 
   constructor(private http: HttpClient) {
 
@@ -50,12 +50,13 @@ export class AuthService {
   //   return this.http.put(this.url+'/'+id,data)
   // }
 
+
   // addUser(data: any) {
   //   return this.http.post(this.baseUrl, data);
   // }
 
   // updateUser(data: any, id: any) {
-  //   return this.http.put(`${this.baseUrl}/${id}`, data);
+  //   return this.http.put(`${this.url}/${id}`, data);
   // }
   // getUserRole(){
   //   return sessionStorage.getItem('role')!=null?sessionStorage.getItem('role')?.toString():'';
@@ -63,4 +64,5 @@ export class AuthService {
   // getAllRole(){
   //   return this.http.get('http://localhost:3000/role');
   // }
+
 }

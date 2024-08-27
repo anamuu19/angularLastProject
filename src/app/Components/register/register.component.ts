@@ -93,7 +93,7 @@ export class RegisterComponent {
     this.user.telNo = this.registerForm.value.telNo;
     this.user.position = this.registerForm.value.position;
     this.user.gender = this.registerForm.value.gender;
-    this.user.role = 'user';
+    this.user.role = 'Staff';
 
     this.service.registration(this.user).subscribe(
       (response:any) => {

@@ -78,12 +78,10 @@ export class DownloadLetterComponent implements OnInit {
         return 'text-success';  // Green for accepted status
       case 'rejected':
         return 'text-danger';   // Red for rejected status
-      case 'pending':
-        return 'text-warning';
-        case 'in process':
-        return 'text-info;';   // Yellow for pending status
+      case 'in process':
+        return 'text-primary';  // Blue for in process status
       default:
-        return 'text-secondary' ; // Grey for other statuses
+        return 'text-secondary'; // Grey for other statuses
     }
   }
 

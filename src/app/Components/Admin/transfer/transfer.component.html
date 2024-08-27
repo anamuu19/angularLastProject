@@ -3,9 +3,10 @@
     <div class="col-sm-6">
       <h2><b>Transfer List</b></h2>
     </div>
-    <!-- <div class="col-sm-6">
+    <div class="col-sm-6">
+      <!-- Search input field -->
       <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText" />
-    </div> -->
+    </div>
   </div>
   <mat-card>
     <div class="table-responsive">
@@ -30,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of userList; let x = index">
+          <tr *ngFor="let data of filteredUserList(); let x = index">
             <td>{{ x + 1 }}</td>
             <td>{{ data.firstName }}</td>
             <td>{{ data.middleName }}</td>
@@ -55,6 +56,10 @@
                     <mat-icon color="primary">check</mat-icon>
                     <span>Confirm</span>
                   </button>
+                  <button mat-menu-item (click)="rejectRequest(data)">
+                    <mat-icon color="warn">cancel</mat-icon>
+                    <span>Reject</span>
+                  </button>
                   <button mat-menu-item (click)="delete(data.id)">
                     <mat-icon color="warn">delete</mat-icon>
                     <span>Delete</span>
@@ -66,7 +71,6 @@
                 </mat-menu>
               </div>
             </td>
-
           </tr>
         </tbody>
       </table>

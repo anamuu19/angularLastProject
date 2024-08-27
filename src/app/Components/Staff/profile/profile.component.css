@@ -1,23 +1,62 @@
-.profile-container {
-  display: flex;
-  align-items: flex-start;
+/* Style the form container */
+form {
+  max-width: 500px;
+  margin: 50px auto;
   padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.profile-left {
-  flex: 1;
-  max-width: 250px;
-  text-align: center;
+/* Style each form group */
+div {
+  margin-bottom: 15px;
 }
 
-.profile-right {
-  flex: 2;
-  margin-left: 20px;
+/* Style labels */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
 }
 
-.profile-picture {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-bottom: 10px;
+/* Style input fields */
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Style error messages */
+div > div {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Button hover effect */
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* Disable button styling */
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

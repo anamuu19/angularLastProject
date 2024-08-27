@@ -89,6 +89,17 @@ body {
   text-align: center;
 }
 
+.action-buttons {
+  display: flex;
+  gap: 5px; /* Adjust the gap between buttons as needed */
+  align-items: center;
+}
+
+.text-success {
+  color: green;
+  font-weight: bold;
+}
+
 .text-danger {
   color: red;
   font-weight: bold;
@@ -99,15 +110,13 @@ body {
   font-weight: bold;
 }
 
-.text-success {
-  color: green;
+.text-primary {
+  color: blue; /* Updated to blue for 'in process' */
   font-weight: bold;
 }
 
-
-
 .text-secondary {
-  color: rgb(43, 106, 148);;
+  color: rgb(85, 87, 88);
   font-weight: bold;
 }
 

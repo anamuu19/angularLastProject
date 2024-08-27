@@ -46,7 +46,7 @@ const routes: Routes = [
     {path:'', component:StaffDashboardComponent},
     {path:'transfer',component:TransferFormComponent},
     {path:'letter',component:DownloadLetterComponent},
-    {path:'profile',component:ProfileComponent}
+    // {path:'profile',component:ProfileComponent}
   ]
 },
 

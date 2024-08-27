@@ -40,14 +40,11 @@ export class TransferService {
     return this.http.post(`${this.baseUrl}/requests/${requestId}/accept`, {});
   }
 
-  // downloadConfirmationLetter(id:number){
-  //   return this.http.get(this.baseUrl+"/"+id)
-  // }
-  // downloadLetter(requestId: number, institutionId: number) {
-  //   const url = `${this.letterUrl}/individual-letter/${requestId}/${institutionId}`;
-  //   return this.http.get(url, {
-  //     responseType: 'blob',
-  //     headers: new HttpHeaders().append('accepted', 'application/pdf')
-  //   });
-  // }
+  rejectRequest(id: number, request: any): Observable<any> {
+    const url = `${this.url}/reject/${id}`;
+    return this.http.put(url, request, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
+  }
+
 }

@@ -29,6 +29,7 @@ export class TransferListComponent implements OnInit {
   viewRequest(): void {
     this.service.getAllRequest().subscribe({
       next: (resp: any) => {
+        console.log('Fetched User List:', resp); // Log the fetched data
         this.userList = resp;
       },
       error: (err) => {
@@ -51,93 +52,31 @@ export class TransferListComponent implements OnInit {
 
   confirm(data: any): void {
     if (data.status === 'accepted') {
-      this.toastr.info('Request already processed');
-      return;
+        this.toastr.info('Request already processed');
+        return;
     }
 
     const dialogRef = this.dialog.open(CommentDialogComponent, {
-      width: '300px',
-      data: { ...data }
+        width: '300px',
+        data: { ...data }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        data.comment = result.comment;
-        data.status = 'in process'; // Set status to 'in process' before sending to admin
+        if (result) {
+            data.comment = result.comment;
+            data.status = 'in process'; // Set status to 'In Process'
 
-        this.transferService.addRequest(data).subscribe({
-          next: () => {
-            this.toastr.success('Request sent to admin');
-            this.viewRequest();
-          },
-          error: (err) => {
-            console.error('Error confirming transfer request', err);
-          }
-        });
-      }
+            this.transferService.addRequest(data).subscribe({
+                next: () => {
+                    this.toastr.success('Request sent to admin');
+                    this.viewRequest(); // Refresh the list to show the updated status
+                },
+                error: (err) => {
+                    console.error('Error confirming transfer request', err);
+                }
+            });
+        }
     });
-  }
-
-  acceptRequest(requestId: number): void {
-    this.transferService.acceptRequest(requestId).subscribe({
-      next: () => {
-        this.toastr.success('Request accepted successfully');
-        this.viewRequest();
-      },
-      error: (err) => {
-        console.error('Error accepting request', err);
-      }
-    });
-  }
-
-
-
-  // sendToAdmin(data: any): void {
-  //   data.status = 'in process'; // Status set to 'in process' when sending to admin
-  //   this.transferService.addRequest(data).subscribe({
-  //     next: () => {
-  //       this.toastr.success('Data sent to admin successfully');
-  //     },
-  //     error: (err) => {
-  //       console.error('Error sending data to admin', err);
-  //     }
-  //   });
-  // }
-
-
-  reject(data: any): void {
-    if (data.status === 'rejected') {
-      this.toastr.info('Request rejected');
-      return;
-    }
-    data.status = 'rejected'
-    this.service.rejectRequest(data.id,data).subscribe({
-      next:(response:any)=>{
-        this.toastr.error('Request is rejected')
-        console.log(response)
-      },
-      error:(err)=>{
-        console.log(err)
-
-
-      }
-    })
-
-    // if (data.status === 'accepted') {
-    //   this.toastr.info('Request already accepted');
-    //   return; // Do not allow rejection if already accepted
-    // }
-
-    // data.status = 'rejected';
-    // this.service.updateRequest(data.id, data).subscribe({
-    //   next: () => {
-    //     this.toastr.success('Request rejected successfully');
-    //     this.viewRequest();
-    //   },
-    //   error: (err) => {
-    //     console.error('Error rejecting transfer request', err);
-    //   }
-    // });
   }
 
   getStatusClass(status: string): string {
@@ -147,33 +86,30 @@ export class TransferListComponent implements OnInit {
       case 'rejected':
         return 'text-danger';   // Red for rejected status
       case 'pending':
-        return 'text-warning';
-        case 'in process':
-        return 'text-info;';   // Yellow for pending status
+        return 'text-warning'; // Yellow for pending status
+      case 'in process':
+        return 'text-primary'; // Blue for in process status
       default:
-        return 'text-secondary' ; // Grey for other statuses
+        return 'text-secondary'; // Grey for other statuses
     }
   }
 
-
-
-
-
-
   filteredUserList(): any[] {
+    console.log('Search Text:', this.searchText); // Log search text
+    const search = this.searchText.toLowerCase();
     return this.userList.filter(data =>
-      data.firstName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.middleName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.lastName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      data.firstName.toLowerCase().includes(search) ||
+      data.middleName.toLowerCase().includes(search) ||
+      data.lastName.toLowerCase().includes(search) ||
+      data.email.toLowerCase().includes(search) ||
       data.phoneNumber.includes(this.searchText) ||
-      data.address.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.gender.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.current_institution.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.institution.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      data.address.toLowerCase().includes(search) ||
+      data.gender.toLowerCase().includes(search) ||
+      data.current_institution.toLowerCase().includes(search) ||
+      (data.institution && data.institution.name.toLowerCase().includes(search)) || // Ensure `data.institution` is checked for null
       data.date.includes(this.searchText) ||
-      data.reason_for_transfer.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      data.status.toLowerCase().includes(this.searchText.toLowerCase()) // Include status in search
+      data.reason_for_transfer.toLowerCase().includes(search) ||
+      data.status.toLowerCase().includes(search)
     );
   }
 }

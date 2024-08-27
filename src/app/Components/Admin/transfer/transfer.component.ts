@@ -3,8 +3,6 @@ import { TransferService } from '../../../Services/Manager/transfer.service';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { error } from 'console';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-transfer',
@@ -37,13 +35,36 @@ export class TransferComponent implements OnInit {
     });
   }
 
+  filteredUserList(): any[] {
+    if (!this.searchText) {
+      return this.userList;
+    }
+
+    const search = this.searchText.toLowerCase();
+    return this.userList.filter(data =>
+      data.firstName.toLowerCase().includes(search) ||
+      data.middleName.toLowerCase().includes(search) ||
+      data.lastName.toLowerCase().includes(search) ||
+      data.email.toLowerCase().includes(search) ||
+      data.phoneNumber.includes(this.searchText) ||
+      data.address.toLowerCase().includes(search) ||
+      data.gender.toLowerCase().includes(search) ||
+      data.current_institution.toLowerCase().includes(search) ||
+      (data.institution && data.institution.name.toLowerCase().includes(search)) ||
+      data.date.includes(this.searchText) ||
+      data.reason_for_transfer.toLowerCase().includes(search) ||
+      data.comment.toLowerCase().includes(search) ||
+      data.status.toLowerCase().includes(search)
+    );
+  }
+
   confirmRequest(data: any): void {
     if (data.status === 'accepted') {
       this.toastr.info('Request already accepted');
       return;
     }
 
-    data.status = 'accepted'; // Status set to 'approved' at the admin level
+    data.status = 'accepted'; // Status set to 'accepted' at the admin level
     this.service.confirmRequest(data.id, data).subscribe({
       next: () => {
         this.toastr.success('Request accepted successfully');
@@ -54,7 +75,6 @@ export class TransferComponent implements OnInit {
       }
     });
   }
-
 
   delete(id: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -76,20 +96,10 @@ export class TransferComponent implements OnInit {
       }
     });
   }
-  // extractId():number[]{
-  //   return this.userList.map((inst:any)=>inst.id);
-  // }
 
   downloadLetter(requestId: number, institutionId: number): void {
     const url = `http://localhost:8080/api/letter/individual-letter/${requestId}/${institutionId}`;
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.target = '_blank';
-    a.click();
-
-    window.URL.revokeObjectURL(url);
-
+    window.open(url, '_blank');
     this.toastr.success('Letter download initiated successfully');
   }
 
@@ -99,17 +109,29 @@ export class TransferComponent implements OnInit {
         return 'text-success';  // Green for accepted status
       case 'rejected':
         return 'text-danger';   // Red for rejected status
-        case 'in process':
-          return 'text-info;';   // Yellow for pending status
-        default:
-          return 'text-secondary' ; // Grey for other statuses
+      case 'in process':
+        return 'text-primary';  // Blue for in process status
+      default:
+        return 'text-secondary'; // Grey for other statuses
     }
   }
 
+  rejectRequest(data: any): void {
+    if (data.status === 'accepted') {
+      this.toastr.info('Request already accepted');
+      return;
+    }
 
-
-
-
-
-
+    data.status = 'rejected'; // Status set to 'rejected'
+    this.service.rejectRequest(data.id, data).subscribe({
+      next: () => {
+        this.toastr.success('Request rejected successfully');
+        this.viewRequest(); // Refresh the list
+      },
+      error: (err) => {
+        console.error('Error rejecting transfer request', err);
+        this.toastr.error('Error rejecting transfer request. Please try again.');
+      }
+    });
+  }
 }

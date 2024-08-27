@@ -17,6 +17,13 @@ export class UserService {
   updateUser(email: string, userData: any): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}/put/${email}`, userData);
   }
+  // getUserId(): string {
+  //   if (typeof window !== 'undefined') {
+  //     return localStorage.getItem('userId') || '';
+  //   }
+  //   return '';
+  // }
+
 
   deleteUser(email: string): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/delete/${email}`);

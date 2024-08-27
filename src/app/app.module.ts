@@ -97,7 +97,7 @@ import { ProfileComponent } from './Components/Staff/profile/profile.component';
     CommentDialogComponent,
     SideNavComponent,
     DownloadLetterComponent,
-    ProfileComponent,
+    ProfileComponent
     // StaffListComponent,
     // RequestComponent,
     // StaffRequestComponent,
